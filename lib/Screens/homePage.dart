@@ -1,7 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:move_app/Services/apiServices.dart';
 import 'package:move_app/models/moveModel.dart';
 
@@ -17,33 +15,30 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 237, 231, 249),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 24.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: Row(
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.menu),
-                    color: Colors.deepPurpleAccent,
-                  ),
                   Spacer(),
                   Text(
                     'MovieExpress',
                     style: TextStyle(
-                        color: Colors.deepPurpleAccent,
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.bold,
-                        fontSize: 22),
+                        fontSize: 26),
                   ),
                   Spacer(),
                 ],
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 18,
             ),
             FutureBuilder(
                 future: ApiService().getpopularMovies(),
@@ -97,6 +92,44 @@ class _homePageState extends State<homePage> {
                                           )),
                                     ),
                                   ),
+                                  Positioned(
+                                    top: 8,
+                                    right: 8,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 8,
+                                        bottom: 5,
+                                      ),
+                                      child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0)
+                                                      .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                moveModel.voteAverage
+                                                    .toString()
+                                                    .substring(0, 3),
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255)),
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.yellow,
+                                                size: 12,
+                                              )
+                                            ],
+                                          )),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -105,7 +138,45 @@ class _homePageState extends State<homePage> {
                       );
                     }).toList(),
                   );
-                })
+                }),
+            SizedBox(
+              height: 22,
+            ),
+            Text(
+              'Now Playing',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  10,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      width: 240,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 231, 222, 249)
+                              .withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.network(
+                                'https://image.tmdb.org/t/p/w500/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg'),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -17,6 +17,7 @@ class ApiService {
       List<moveModel> movies = results
           .map((movie) => moveModel.fromJson(movie as Map<String, dynamic>))
           .toList();
+      // Logger().f(movies[0].posterPath);
       return movies;
     } else {
       Logger().e('Error - ${Response.statusCode}');
