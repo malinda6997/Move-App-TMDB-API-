@@ -157,19 +157,72 @@ class _homePageState extends State<homePage> {
                   (index) => Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
-                      width: 240,
+                      width: 200,
                       height: 120,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 231, 222, 249)
-                              .withOpacity(0.7),
+                          color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
                           borderRadius: BorderRadius.circular(12)),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Image.network(
                                 'https://image.tmdb.org/t/p/w500/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg'),
-                          )
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 14,
+                              ),
+                              Text(
+                                "No Way Up",
+                                style: TextStyle(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Container(
+                                width: 50,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color:
+                                         const Color.fromARGB(255, 7, 255, 19),
+                                    borderRadius: BorderRadius.circular(4)),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 7, bottom: 3),
+                                      child: Text(
+                                        8.95.toString().substring(0, 3),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                      size: 12,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
